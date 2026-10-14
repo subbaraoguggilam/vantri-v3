@@ -24,6 +24,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Automatic Animated Text Flow: V3 <-> VANTRI
+  const brandMorph = document.getElementById('brandMorphText');
+  if (brandMorph) {
+    const states = [
+      { text: "VANTRI", delay: 2600 },
+      { text: "V3", delay: 2000 },
+      { text: "VISION", delay: 1800 },
+      { text: "VISUALIZE", delay: 1800 },
+      { text: "VICTORY", delay: 1800 }
+    ];
+    let currentIndex = 0;
+
+    function morphNext() {
+      // Smooth fade out
+      brandMorph.classList.add('fade-out');
+      brandMorph.classList.remove('fade-in');
+
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % states.length;
+        brandMorph.textContent = states[currentIndex].text;
+
+        // Smooth fade in
+        brandMorph.classList.remove('fade-out');
+        brandMorph.classList.add('fade-in');
+
+        // Schedule next transition
+        setTimeout(morphNext, states[currentIndex].delay);
+      }, 400); // Wait for CSS transition
+    }
+
+    // Start morph cycle
+    setTimeout(morphNext, states[0].delay);
+  }
+
   // Modal Functionality
   const modal = document.getElementById('contactModal');
   const modalTitle = document.getElementById('modalTitle');
