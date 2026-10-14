@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Vantri (V3) | Vision • Visualize • Victory | AI Workshops & Tech Solutions</title>
+  
+  <meta name="description" content="Vantri (V3) empowers individuals and enterprises with state-of-the-art tech workshops (AWS, RPA, Web Development, Prompt Engineering, Vibe Coding, Claude) and flexible SaaS rentals & tech deployment.">
+  <meta name="keywords" content="Vantri, V3, Vision, Visualize, Victory, AI Workshops, Prompt Engineering, Vibe Coding, Claude, AWS, RPA, SaaS, Rent Technology">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- Google Fonts: DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Header / Navbar -->
+  <header class="navbar-sticky">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo-wrap">
+        <img src="assets/logo.png" alt="Vantri V3 Logo" class="brand-logo-img">
+        <span class="brand-title">VANTRI</span>
+      </a>
+
+      <!-- Desktop & Mobile Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About V3</a></li>
+        <li><a href="#workshops">Workshops</a></li>
+        <li><a href="#tech-rental">Rent / Buy SaaS</a></li>
+        <li><a href="#features">Why Vantri</a></li>
+        <li>
+          <button type="button" class="btn btn-secondary" onclick="openModal('General Consultation')">
+            Contact Us
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="about">
+      <div class="container">
+        <div class="hero-banner">
+          <div class="hero-content">
+            <span class="badge">Next-Gen Tech Hub</span>
+            <h1>Drive Innovation with <span>Vantri (V3)</span></h1>
+            <p class="hero-desc">
+              Transforming concepts into reality through cutting-edge hands-on workshops and bespoke on-demand software &amp; SaaS rentals.
+            </p>
+
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <h3>6+</h3>
+                <p>Specialized Tech Domains</p>
+              </div>
+              <div class="metric-item">
+                <h3>100%</h3>
+                <p>Practical &amp; Industry-Ready</p>
+              </div>
+              <div class="metric-item">
+                <h3>Flexible</h3>
+                <p>Rent or Own Tech Architecture</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="#workshops" class="btn btn-primary">
+                Explore Workshops
+                <span class="btn-round-icon"><i class="fa-solid fa-arrow-right"></i></span>
+              </a>
+              <button onclick="openModal('SaaS / Tech Rental Inquiry')" class="btn btn-secondary">
+                Request Tech / SaaS
+              </button>
+            </div>
+          </div>
+
+          <!-- V3 Meaning Pillars Card -->
+          <div class="hero-visual">
+            <div class="v3-pillars-card">
+              <div style="margin-bottom: 1.25rem;">
+                <span style="color: var(--accent-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">The V3 Philosophy</span>
+                <h3 style="color: #fff; font-size: 1.4rem; font-weight: 800;">Three Pillars of Vantri</h3>
+              </div>
+
+              <!-- Pillar 1 -->
+              <div class="pillar-item">
+                <div class="pillar-badge">V1</div>
+                <div class="pillar-text">
+                  <h4>Vision</h4>
+                  <p>Foreseeing technological disruption and identifying future-proof opportunities.</p>
+                </div>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="pillar-item">
+                <div class="pillar-badge">V2</div>
+                <div class="pillar-text">
+                  <h4>Visualize</h4>
+                  <p>Architecting blueprints, interactive workflows, and tangible solutions.</p>
+                </div>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="pillar-item">
+                <div class="pillar-badge">V3</div>
+                <div class="pillar-text">
+                  <h4>Victory</h4>
+                  <p>Delivering measurable success, elite skills, and scalable market impact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Scrolling Logo Marquee -->
+    <section class="marquee-section">
+      <div class="marquee-title">Featured Workshop Technologies &amp; Capabilities</div>
+      <div class="marquee-container">
+        <!-- 3 sets of items for seamless CSS infinite translation loop -->
+        <div class="marquee-track">
+          <!-- Item 1: Claude -->
+          <div class="marquee-card">
+            <svg viewBox="0 0 24 24" fill="#D97706"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <span>Claude AI</span>
+          </div>
+          <!-- Item 2: Prompt Engineering -->
+          <div class="marquee-card">
+            <i class="fa-solid fa-terminal" style="color: #6366f1; font-size: 1.3rem;"></i>
+            <span>Prompt Engineering</span>
+          </div>
+          <!-- Item 3: Vibe Coding -->
+          <div class="marquee-card">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899; font-size: 1.3rem;"></i>
+            <span>Vibe Coding</span>
+          </div>
+          <!-- Item 4: AWS Cloud -->
+          <div class="marquee-card">
+            <i class="fa-brands fa-aws" style="color: #ff9900; font-size: 1.5rem;"></i>
+            <span>AWS Cloud</span>
+          </div>
+          <!-- Item 5: RPA Automation -->
+          <div class="marquee-card">
+            <i class="fa-solid fa-robot" style="color: #06b6d4; font-size: 1.3rem;"></i>
+            <span>RPA Automation</span>
+          </div>
+          <!-- Item 6: Web Development -->
+          <div class="marquee-card">
+            <i class="fa-solid fa-code" style="color: #10b981; font-size: 1.3rem;"></i>
+            <span>Fullstack Web Dev</span>
+          </div>
+
+          <!-- Duplicate Set 1 -->
+          <div class="marquee-card" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#D97706"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <span>Claude AI</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-terminal" style="color: #6366f1; font-size: 1.3rem;"></i>
+            <span>Prompt Engineering</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899; font-size: 1.3rem;"></i>
+            <span>Vibe Coding</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-brands fa-aws" style="color: #ff9900; font-size: 1.5rem;"></i>
+            <span>AWS Cloud</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-robot" style="color: #06b6d4; font-size: 1.3rem;"></i>
+            <span>RPA Automation</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-code" style="color: #10b981; font-size: 1.3rem;"></i>
+            <span>Fullstack Web Dev</span>
+          </div>
+
+          <!-- Duplicate Set 2 -->
+          <div class="marquee-card" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#D97706"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <span>Claude AI</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-terminal" style="color: #6366f1; font-size: 1.3rem;"></i>
+            <span>Prompt Engineering</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899; font-size: 1.3rem;"></i>
+            <span>Vibe Coding</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-brands fa-aws" style="color: #ff9900; font-size: 1.5rem;"></i>
+            <span>AWS Cloud</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-robot" style="color: #06b6d4; font-size: 1.3rem;"></i>
+            <span>RPA Automation</span>
+          </div>
+          <div class="marquee-card" aria-hidden="true">
+            <i class="fa-solid fa-code" style="color: #10b981; font-size: 1.3rem;"></i>
+            <span>Fullstack Web Dev</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="section" id="workshops">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge">Skill Acceleration</span>
+          <h2>Flagship Tech Workshops</h2>
+          <p>Gain mastery in tomorrow's most in-demand technologies with certified, project-driven workshops.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Workshop 1: Claude -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #d97706;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>Claude &amp; LLM Mastery</h3>
+            <p>Unlock Anthropic's Claude 3.5/3.7 &amp; Opus architectures. Master chain-of-thought, tool usage, artifact engineering, and enterprise API integrations.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">Claude 3.7</span>
+              <span class="workshop-tag">Anthropic API</span>
+              <span class="workshop-tag">Agents</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">2-Day Intensive</span>
+              <button onclick="openModal('Claude Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+
+          <!-- Workshop 2: Vibe Coding -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #ec4899;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3>Vibe Coding with AI</h3>
+            <p>Harness AI agents, Cursor, and voice-assisted prompt flows to build production applications at the speed of thought without boilerplate friction.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">Cursor</span>
+              <span class="workshop-tag">AI Copilots</span>
+              <span class="workshop-tag">Rapid Prototyping</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">Hands-on Bootcamp</span>
+              <button onclick="openModal('Vibe Coding Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+
+          <!-- Workshop 3: Prompt Engineering -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #6366f1;">
+              <i class="fa-solid fa-terminal"></i>
+            </div>
+            <h3>Advanced Prompt Engineering</h3>
+            <p>Structured prompting techniques, Few-Shot, ReAct, RAG pipelines, fine-tuning benchmarks, and automated LLM evaluation protocols.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">Few-Shot</span>
+              <span class="workshop-tag">RAG</span>
+              <span class="workshop-tag">System Design</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">Weekend Live</span>
+              <button onclick="openModal('Prompt Engineering Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+
+          <!-- Workshop 4: AWS Cloud -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #ff9900;">
+              <i class="fa-brands fa-aws"></i>
+            </div>
+            <h3>AWS Cloud Architecture</h3>
+            <p>Architect scalable, fault-tolerant infrastructure using EC2, S3, Lambda, API Gateway, DynamoDB, and automated CI/CD pipelines.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">Serverless</span>
+              <span class="workshop-tag">DevOps</span>
+              <span class="workshop-tag">Cloud Cert</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">3-Week Program</span>
+              <button onclick="openModal('AWS Cloud Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+
+          <!-- Workshop 5: RPA Automation -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #06b6d4;">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <h3>RPA (Robotic Process Automation)</h3>
+            <p>Build enterprise workflow bots with UiPath and Python bots to eliminate repetitive human tasks, automate data scraping, and sync ERPs.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">UiPath</span>
+              <span class="workshop-tag">Automation</span>
+              <span class="workshop-tag">Enterprise Bot</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">Interactive Lab</span>
+              <button onclick="openModal('RPA Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+
+          <!-- Workshop 6: Web Development -->
+          <div class="workshop-card">
+            <div class="card-icon-wrap" style="color: #10b981;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3>Fullstack Modern Web Dev</h3>
+            <p>From UI/UX responsiveness to high-performance SSR backends, REST/GraphQL APIs, databases, and secure authentication flows.</p>
+            <div class="workshop-tags">
+              <span class="workshop-tag">React / Astro</span>
+              <span class="workshop-tag">Node.js</span>
+              <span class="workshop-tag">Tailwind</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-pill">Complete Track</span>
+              <button onclick="openModal('Web Development Workshop')" class="btn btn-secondary">Enroll Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SaaS Product Rental & Custom Tech Solutions -->
+    <section class="section section-bg" id="tech-rental">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge">Tech-As-A-Service</span>
+          <h2>Rent, Lease, or Buy Custom SaaS &amp; Tech</h2>
+          <p>Don't reinvent the wheel. Access pre-built, custom-tailored enterprise software and tech modules on an agile rental or ownership model.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Option 1: Monthly SaaS Rental -->
+          <div class="tech-rental-card">
+            <span class="rental-badge badge-rent">Rental Model</span>
+            <h3>SaaS On-Demand Lease</h3>
+            <p>Subscribe to our pre-configured enterprise tech stack with zero upfront Capex. Managed hosting, support, and continuous updates included.</p>
+            
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-circle-check"></i> Zero heavy deployment costs</li>
+              <li><i class="fa-solid fa-circle-check"></i> Cancel or scale licenses monthly</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dedicated cloud container</li>
+              <li><i class="fa-solid fa-circle-check"></i> 24/7 SLA uptime monitoring</li>
+            </ul>
+
+            <button onclick="openModal('Rent a SaaS Product')" class="btn btn-primary" style="margin-top: auto;">
+              Rent Solution
+            </button>
+          </div>
+
+          <!-- Option 2: Full Technology Acquisition -->
+          <div class="tech-rental-card">
+            <span class="rental-badge badge-saas">Full Ownership</span>
+            <h3>Turnkey Technology Purchase</h3>
+            <p>Acquire complete source code, IP ownership, and dedicated deployment for your organization. Perfect for proprietary tech expansions.</p>
+            
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-circle-check"></i> 100% Source code ownership</li>
+              <li><i class="fa-solid fa-circle-check"></i> On-premise or Private VPC deployment</li>
+              <li><i class="fa-solid fa-circle-check"></i> Complete architectural handover</li>
+              <li><i class="fa-solid fa-circle-check"></i> 6 Months free maintenance</li>
+            </ul>
+
+            <button onclick="openModal('Buy Turnkey Tech Product')" class="btn btn-secondary" style="margin-top: auto;">
+              Buy Technology
+            </button>
+          </div>
+
+          <!-- Option 3: Custom Architecture Build -->
+          <div class="tech-rental-card">
+            <span class="rental-badge badge-custom">Bespoke Solution</span>
+            <h3>Custom SaaS Engineering</h3>
+            <p>Have an ambitious vision? Our engineering team designs, builds, and deploys custom AI &amp; Web products aligned with your specific business logic.</p>
+            
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-circle-check"></i> Custom AI agent integrations</li>
+              <li><i class="fa-solid fa-circle-check"></i> Tailored database &amp; API schemas</li>
+              <li><i class="fa-solid fa-circle-check"></i> Scalable cloud architecture</li>
+              <li><i class="fa-solid fa-circle-check"></i> Milestone-based delivery</li>
+            </ul>
+
+            <button onclick="openModal('Custom SaaS Engineering Inquiry')" class="btn btn-secondary" style="margin-top: auto;">
+              Request Custom Build
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Vantri / The V3 Advantage -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge">The V3 Edge</span>
+          <h2>Engineered for Seamless Device Scalability</h2>
+          <p>Every interface and tech product built by Vantri adheres to adaptive layout ratios, making experiences lightweight, fast, and accessible across any phone, tablet, laptop, or 4K screen.</p>
+        </div>
+
+        <div class="grid-3">
+          <div style="text-align: center; padding: 2rem;">
+            <div class="card-icon-wrap" style="margin: 0 auto 1.5rem; color: var(--primary-blue);">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Adaptive Screen Ratios</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Fluid typography, flexible grids, and vector assets ensure flawless presentation on 320px mobile screens up to ultra-wide desktop monitors.</p>
+          </div>
+
+          <div style="text-align: center; padding: 2rem;">
+            <div class="card-icon-wrap" style="margin: 0 auto 1.5rem; color: var(--accent-cyan);">
+              <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Hardware-Accelerated Motion</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Smooth 60FPS CSS marquee and subtle interactive cards powered by GPU compositing for maximum battery and load efficiency.</p>
+          </div>
+
+          <div style="text-align: center; padding: 2rem;">
+            <div class="card-icon-wrap" style="margin: 0 auto 1.5rem; color: #10b981;">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Enterprise-Grade Rigor</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Built with security, accessible ARIA roles, modern semantic markup, and reliable engineering protocols.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Contact & Inquiry Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modalClose" aria-label="Close modal">&times;</button>
+      <h3 id="modalTitle" style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--heading-dark);">Get In Touch</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Fill out your details and our team will get back to you with custom workshop curriculums or SaaS rental options.</p>
+
+      <form id="inquiryForm">
+        <input type="hidden" id="modalInterest" name="interest" value="General">
+
+        <div class="form-group">
+          <label for="userName">Full Name</label>
+          <input type="text" id="userName" class="form-control" placeholder="e.g. Alex Johnson" required>
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Business or Personal Email</label>
+          <input type="email" id="userEmail" class="form-control" placeholder="name@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="userPhone">Phone Number</label>
+          <input type="tel" id="userPhone" class="form-control" placeholder="+91 98765 43210">
+        </div>
+
+        <div class="form-group">
+          <label for="userRequirement">Specific Requirement or Technology</label>
+          <textarea id="userRequirement" class="form-control" rows="3" placeholder="Tell us about the workshop you want or the SaaS product you wish to rent or build..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          Submit Inquiry
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <img src="assets/logo.png" alt="Vantri Logo" style="height: 48px; border-radius: 6px;">
+            <h3 style="margin-bottom: 0;">VANTRI (V3)</h3>
+          </div>
+          <p>
+            Vantri stands for <strong>Vision</strong>, <strong>Visualize</strong>, and <strong>Victory</strong>. Empowering the next generation of builders through workshops and cutting-edge SaaS technology.
+          </p>
+          <div style="display: flex; gap: 1rem; font-size: 1.25rem;">
+            <a href="#" style="color: #94a3b8;"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" style="color: #94a3b8;"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" style="color: #94a3b8;"><i class="fa-brands fa-github"></i></a>
+            <a href="#" style="color: #94a3b8;"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Workshops</h4>
+          <ul class="footer-links">
+            <li><a href="#workshops">Claude &amp; LLMs</a></li>
+            <li><a href="#workshops">Vibe Coding</a></li>
+            <li><a href="#workshops">Prompt Engineering</a></li>
+            <li><a href="#workshops">AWS Cloud Architecture</a></li>
+            <li><a href="#workshops">RPA Automation</a></li>
+            <li><a href="#workshops">Web Development</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Products &amp; SaaS</h4>
+          <ul class="footer-links">
+            <li><a href="#tech-rental">Rent SaaS Technology</a></li>
+            <li><a href="#tech-rental">Turnkey Tech Buyout</a></li>
+            <li><a href="#tech-rental">Custom AI Integrations</a></li>
+            <li><a href="#tech-rental">Enterprise Licensing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">
+            Have a custom query or interested in hosting a college / corporate workshop?
+          </p>
+          <button onclick="openModal('Corporate/College Partnership')" class="btn btn-primary" style="width: 100%;">
+            Partner With Us
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Vantri (V3) Innovations. All rights reserved.</div>
+        <div>Engineered for high-performance responsiveness across all screen ratios.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
