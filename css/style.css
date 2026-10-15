@@ -131,30 +131,31 @@ body {
   color: var(--dark-navy);
 }
 
-/* High Visibility Rounded Badge for Logo (matching screenshot style) */
+/* High Visibility Rounded Badge for Logo (Zoomed & Crisp) */
 .logo-box {
-  width: 58px;
-  height: 58px;
+  width: 62px;
+  height: 62px;
   background: #1877f2;
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
+  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .brand-logo-wrap:hover .logo-box {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.55);
 }
 
 .logo-box-footer {
-  width: 50px;
-  height: 50px;
+  width: 54px;
+  height: 54px;
   border-radius: 12px;
 }
 
@@ -163,59 +164,104 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  /* Zoom the graphic inside the container to make V3 mark bold and prominent */
+  transform: scale(1.42);
+  transform-origin: center center;
 }
 
-/* Dynamic Brand Animated Text */
-.brand-animated-text {
+/* Premium Organic Morphing Stage: V3 -> VAN -> Vantri (Fast, Crisp, Run Once) */
+.brand-morph-stage {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  min-width: 175px;
+  user-select: none;
+}
+
+/* Stage V3: Solid Crisp Glyph */
+.stage-v3 {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  transition: transform 0.25s ease-out, opacity 0.2s ease, filter 0.2s ease;
+  pointer-events: none;
 }
 
-.animated-text-morph {
-  font-size: 1.75rem;
-  font-weight: 850;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-  background: linear-gradient(90deg, #1548b7 0%, #1e6bf5 50%, #32b7ec 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.v3-glyph {
+  font-size: 2.15rem;
+  font-weight: 900;
+  color: #000000;
+  letter-spacing: -1.5px;
+  font-family: var(--font-family);
   display: inline-block;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 130px;
-  animation: gradientShine 4s linear infinite;
 }
 
-.animated-text-morph.fade-out {
+/* Panel 2 Dissolve State */
+.stage-v3.dissolving {
   opacity: 0;
-  transform: translateY(-4px) scale(0.96);
+  transform: translateY(-50%) scale(1.1);
+  filter: blur(4px);
 }
 
-.animated-text-morph.fade-in {
+.stage-v3.hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+/* Word Container */
+.stage-word {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 2.2rem;
+  font-weight: 850;
+  color: #000000;
+  letter-spacing: -0.6px;
+  font-family: var(--font-family);
+}
+
+/* Individual letter transitions - Fast & Snappy */
+.m-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(6px) scale(0.95);
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.18s ease;
+  color: #000000;
+}
+
+.m-char.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-.animated-sub {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--secondary-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-top: 2px;
+/* Capital V styling */
+.m-v {
+  font-weight: 900;
+  margin-right: -1px;
 }
 
-@keyframes gradientShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Natural Letter 'i' with naturally attached dot in font body */
+.m-i-full {
+  display: inline-block;
+  font-weight: 850;
+  line-height: 1;
+  color: #000000;
+  margin-left: 0.5px;
+}
+
+/* Final Locked State (Fixed in place permanently) */
+.stage-word.locked .m-char {
+  color: #000000;
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .nav-links {
@@ -329,51 +375,88 @@ body {
 }
 
 .v3-pillars-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 2rem;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 22px;
+  padding: 2.2rem;
   width: 100%;
-  max-width: 380px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .pillar-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.25rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease;
+}
+
+.pillar-item:first-of-type {
+  padding-top: 0.5rem;
 }
 
 .pillar-item:last-child {
   border-bottom: none;
+  padding-bottom: 0.25rem;
 }
 
+.pillar-item:hover {
+  transform: translateX(4px);
+}
+
+/* Neat Capsule Pill Badge for V1, V2, V3 (matching screenshot) */
 .pillar-badge {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--primary-blue));
-  border-radius: 12px;
+  width: 46px;
+  height: 60px;
+  background: linear-gradient(180deg, #32b7ec 0%, #1a73e8 55%, #1557bf 100%);
+  border-radius: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 1.3rem;
+  font-weight: 850;
+  font-size: 1.15rem;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(50, 183, 236, 0.3);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top gloss highlight for crisp modern 3D depth */
+.pillar-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 100%);
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  pointer-events: none;
 }
 
 .pillar-text h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 750;
   color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.2px;
 }
 
 .pillar-text p {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* Infinite Marquee Section */
@@ -782,6 +865,261 @@ body {
   align-items: center;
   font-size: 0.9rem;
   color: #64748b;
+}
+
+/* ==========================================================
+   Leadership & Founders Section (Side-by-side Desktop, 1-per-view Mobile)
+   ========================================================== */
+.leadership-section {
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.leadership-carousel-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Side-by-side desktop frame (1fr 1fr) */
+.leadership-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.leader-banner-card {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background: #002e99;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px -8px rgba(0, 46, 153, 0.28), 0 4px 12px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 380px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leader-banner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px -10px rgba(0, 46, 153, 0.38);
+}
+
+/* Standard Split Card Content */
+.leader-content-side {
+  background: linear-gradient(135deg, #00227a 0%, #0036b3 60%, #0747dc 100%);
+  padding: 2.2rem 2.2rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.leader-watermark {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.leader-badge-pill {
+  display: inline-block;
+  color: #f43f5e;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leader-headline {
+  font-size: clamp(1.4rem, 1.8vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.4px;
+  position: relative;
+  z-index: 2;
+}
+
+.leader-quote {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #dbeafe;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leader-meta {
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.leader-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.leader-role {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #93c5fd;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.leader-links {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.leader-links a {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.leader-links a:hover {
+  background: #ffffff;
+  color: #002e99;
+  transform: translateY(-2px);
+}
+
+.leader-photo-side {
+  position: relative;
+  background: #11141a;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leader-photo-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.leader-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%; /* Perfect eye-level alignment */
+  filter: grayscale(100%) contrast(1.1);
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.leader-banner-card:hover .leader-photo-img {
+  transform: scale(1.04);
+  filter: grayscale(70%) contrast(1.15);
+}
+
+.leader-content-side::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -45px;
+  bottom: 0;
+  width: 90px;
+  background: linear-gradient(135deg, #00227a 0%, #0036b3 60%, #0747dc 100%);
+  transform: skewX(-14deg);
+  z-index: 3;
+}
+
+/* Mobile Nav Dots */
+.leadership-mobile-nav {
+  display: none;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.lead-nav-btn {
+  width: 28px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lead-nav-btn.active {
+  background: #002e99;
+  width: 44px;
+}
+
+/* Mobile: Exactly 1 Profile Seen at a time with smooth scroll-snap */
+@media (max-width: 992px) {
+  .leadership-cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+    padding-bottom: 0.75rem;
+    scrollbar-width: none; /* Hide scrollbar for clean carousel feel */
+  }
+
+  .leadership-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .leader-banner-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+    grid-template-columns: 1fr;
+    min-height: 440px;
+  }
+
+  .leader-content-side {
+    padding: 2.2rem 1.75rem;
+  }
+
+  .leader-content-side::after {
+    display: none;
+  }
+
+  .leader-photo-side {
+    height: 300px;
+  }
+
+  .leadership-mobile-nav {
+    display: flex;
+  }
 }
 
 /* Responsive Breakpoints & Device Adaptability */

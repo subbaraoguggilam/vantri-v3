@@ -24,38 +24,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Automatic Animated Text Flow: V3 <-> VANTRI
-  const brandMorph = document.getElementById('brandMorphText');
-  if (brandMorph) {
-    const states = [
-      { text: "VANTRI", delay: 2600 },
-      { text: "V3", delay: 2000 },
-      { text: "VISION", delay: 1800 },
-      { text: "VISUALIZE", delay: 1800 },
-      { text: "VICTORY", delay: 1800 }
-    ];
-    let currentIndex = 0;
+  // Fast, Crisp Morphing Animation (Runs Once, Unified letter i)
+  const stageV3 = document.getElementById('stageV3');
+  const stageWord = document.getElementById('stageWord');
+  const charV = document.getElementById('charV');
+  const charA = document.getElementById('charA');
+  const charN = document.getElementById('charN');
+  const charT = document.getElementById('charT');
+  const charR = document.getElementById('charR');
+  const fullI = document.getElementById('fullI');
 
-    function morphNext() {
-      // Smooth fade out
-      brandMorph.classList.add('fade-out');
-      brandMorph.classList.remove('fade-in');
+  if (stageV3 && stageWord && charV && charA && charN && charT && charR && fullI) {
+    // Stage 1: Brief presentation of V3 (500ms)
+    setTimeout(() => {
+      // Stage 2: Quick dissolve of V3
+      stageV3.classList.add('dissolving');
 
       setTimeout(() => {
-        currentIndex = (currentIndex + 1) % states.length;
-        brandMorph.textContent = states[currentIndex].text;
+        stageV3.classList.add('hidden');
 
-        // Smooth fade in
-        brandMorph.classList.remove('fade-out');
-        brandMorph.classList.add('fade-in');
-
-        // Schedule next transition
-        setTimeout(morphNext, states[currentIndex].delay);
-      }, 400); // Wait for CSS transition
-    }
-
-    // Start morph cycle
-    setTimeout(morphNext, states[0].delay);
+        // Stage 3: Fast, snappy letter arrival (V-a-n-t-r-i)
+        charV.classList.add('visible');
+        setTimeout(() => charA.classList.add('visible'), 60);
+        setTimeout(() => charN.classList.add('visible'), 120);
+        setTimeout(() => charT.classList.add('visible'), 180);
+        setTimeout(() => charR.classList.add('visible'), 240);
+        setTimeout(() => {
+          fullI.classList.add('visible'); // Complete letter i with dot attached to body
+          stageWord.classList.add('locked');
+        }, 300);
+      }, 200);
+    }, 550);
+    // Runs ONCE — does not loop or restart
   }
 
   // Modal Functionality
@@ -105,5 +105,34 @@ document.addEventListener('DOMContentLoaded', () => {
       inquiryForm.reset();
       window.closeModal();
     });
+  }
+
+  // Leadership Carousel Mobile Dot Controller
+  const leadershipGrid = document.getElementById('leadershipGrid');
+  const leadNavBtns = document.querySelectorAll('.lead-nav-btn');
+
+  if (leadershipGrid && leadNavBtns.length > 0) {
+    // Dot click scrolling
+    leadNavBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        const cardWidth = leadershipGrid.offsetWidth;
+        leadershipGrid.scrollTo({
+          left: idx * cardWidth,
+          behavior: 'smooth'
+        });
+        leadNavBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Sync active dot on touch swipe
+    leadershipGrid.addEventListener('scroll', () => {
+      const scrollLeft = leadershipGrid.scrollLeft;
+      const cardWidth = leadershipGrid.offsetWidth;
+      const activeIdx = Math.round(scrollLeft / cardWidth);
+      leadNavBtns.forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === activeIdx);
+      });
+    }, { passive: true });
   }
 });

@@ -31,9 +31,21 @@
         <div class="logo-box">
           <img src="assets/logo.png" alt="Vantri V3 Logo" class="brand-logo-img">
         </div>
-        <div class="brand-animated-text">
-          <span class="animated-text-morph" id="brandMorphText">VANTRI</span>
-          <span class="animated-sub">Vision • Visualize • Victory</span>
+        <div class="brand-morph-stage" id="brandMorphStage">
+          <!-- V3 State -->
+          <div class="stage-v3" id="stageV3">
+            <span class="v3-glyph">V3</span>
+          </div>
+
+          <!-- Letters Container for organic morphing -->
+          <div class="stage-word" id="stageWord">
+            <span class="m-char m-v" id="charV">V</span>
+            <span class="m-char m-a" id="charA">a</span>
+            <span class="m-char m-n" id="charN">n</span>
+            <span class="m-char m-t" id="charT">t</span>
+            <span class="m-char m-r" id="charR">r</span>
+            <span class="m-char m-i-full" id="fullI">i</span>
+          </div>
         </div>
       </a>
 
@@ -42,6 +54,7 @@
         <li><a href="#about">About V3</a></li>
         <li><a href="#workshops">Workshops</a></li>
         <li><a href="#tech-rental">Rent / Buy SaaS</a></li>
+        <li><a href="#leadership">Leadership</a></li>
         <li><a href="#features">Why Vantri</a></li>
         <li>
           <button type="button" class="btn btn-secondary" onclick="openModal('General Consultation')">
@@ -411,6 +424,96 @@
             <button onclick="openModal('Custom SaaS Engineering Inquiry')" class="btn btn-secondary" style="margin-top: auto;">
               Request Custom Build
             </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership / Founders Section (Matching User Reference Banner) -->
+    <section class="section leadership-section" id="leadership">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge">The Minds Behind V3</span>
+          <h2>Leadership &amp; Founding Vision</h2>
+          <p>Meet the visionary leaders driving Vantri's mission to bridge next-gen tech education and scalable software innovations.</p>
+        </div>
+
+        <div class="leadership-carousel-container">
+          <!-- Side-by-side on desktop, 1 card per slide on mobile -->
+          <div class="leadership-cards-grid" id="leadershipGrid">
+            
+            <!-- Leader 1: CEO & Founder (Subbarao Guggilam) matching Co-Founder split layout -->
+            <div class="leader-banner-card" id="leaderCard1">
+              <div class="leader-content-side">
+                <svg class="leader-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                  <path d="M20 20 L50 85 L80 20" stroke-width="5" opacity="0.12"/>
+                  <path d="M30 20 L50 68 L70 20" stroke-width="5" opacity="0.16"/>
+                  <path d="M40 20 L50 48 L60 20" stroke-width="5" opacity="0.2"/>
+                </svg>
+
+                <div class="leader-badge-pill">LEADERSHIP</div>
+                <h3 class="leader-headline">CEO / Founder Prioritization</h3>
+                <p class="leader-quote">
+                  "Discover how to ruthlessly prioritize to align your team and get things done."
+                </p>
+
+                <div class="leader-meta">
+                  <div class="leader-name">Subbarao Guggilam</div>
+                  <div class="leader-role">CEO, VANTRI</div>
+                  <div class="leader-links">
+                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter Profile"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Contact CEO" onclick="openModal('Contact CEO - Subbarao Guggilam')"><i class="fa-solid fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="leader-photo-side">
+                <div class="leader-photo-wrapper">
+                  <img src="assets/ceo-portrait.png" alt="Subbarao Guggilam - CEO, VANTRI" class="leader-photo-img">
+                </div>
+              </div>
+            </div>
+
+            <!-- Leader 2: Co-Founder & CTO / Tech & Architecture -->
+            <div class="leader-banner-card" id="leaderCard2">
+              <div class="leader-content-side">
+                <svg class="leader-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                  <path d="M20 20 L50 85 L80 20" stroke-width="5" opacity="0.12"/>
+                  <path d="M30 20 L50 68 L70 20" stroke-width="5" opacity="0.16"/>
+                  <path d="M40 20 L50 48 L60 20" stroke-width="5" opacity="0.2"/>
+                </svg>
+
+                <div class="leader-badge-pill">CTO / ARCHITECTURE</div>
+                <h3 class="leader-headline">Technology &amp; Engineering</h3>
+                <p class="leader-quote">
+                  "Architecting scalable generative AI agent workflows, resilient RPA pipelines, and enterprise software modules."
+                </p>
+
+                <div class="leader-meta">
+                  <div class="leader-name">Co-Founder &amp; CTO</div>
+                  <div class="leader-role">TECH LEADERSHIP, VANTRI (V3)</div>
+                  <div class="leader-links">
+                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="Contact CTO" onclick="openModal('Contact CTO')"><i class="fa-solid fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="leader-photo-side">
+                <div class="leader-photo-wrapper">
+                  <img src="assets/cofounder-portrait-pro.png" alt="Co-Founder &amp; CTO, VANTRI" class="leader-photo-img">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Mobile Pagination Controls (Only visible on mobile) -->
+          <div class="leadership-mobile-nav" id="leadershipMobileNav">
+            <button class="lead-nav-btn active" data-slide="0" aria-label="View CEO Profile"></button>
+            <button class="lead-nav-btn" data-slide="1" aria-label="View CTO Profile"></button>
           </div>
         </div>
       </div>
