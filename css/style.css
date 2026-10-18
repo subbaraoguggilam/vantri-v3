@@ -1034,8 +1034,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%; /* Perfect eye-level alignment */
-  filter: grayscale(100%) contrast(1.1);
+  object-position: center top; /* Show face from top — works for portrait/headshot images */
+  filter: grayscale(100%) contrast(1.12);
   display: block;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
@@ -1090,31 +1090,51 @@ body {
     -webkit-overflow-scrolling: touch;
     gap: 1.25rem;
     padding-bottom: 0.75rem;
-    scrollbar-width: none; /* Hide scrollbar for clean carousel feel */
+    scrollbar-width: none;
   }
 
   .leadership-cards-grid::-webkit-scrollbar {
     display: none;
   }
 
+  /* Keep the same horizontal split layout as desktop — text left | photo right */
   .leader-banner-card {
-    flex: 0 0 100%;
-    min-width: 100%;
-    scroll-snap-align: center;
-    grid-template-columns: 1fr;
-    min-height: 440px;
+    flex: 0 0 calc(100vw - 2rem); /* Full viewport width minus padding */
+    min-width: calc(100vw - 2rem);
+    scroll-snap-align: start;
+    grid-template-columns: 1.1fr 0.9fr; /* Keep side-by-side split */
+    min-height: 420px;
+    height: auto;
   }
 
   .leader-content-side {
-    padding: 2.2rem 1.75rem;
+    padding: 1.8rem 1.4rem;
   }
 
+  .leader-headline {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+  }
+
+  .leader-quote {
+    font-size: 0.88rem;
+  }
+
+  /* Keep diagonal skew on mobile */
   .leader-content-side::after {
-    display: none;
+    display: block;
   }
 
+  /* Photo fills the right half of the card completely */
   .leader-photo-side {
-    height: 300px;
+    height: auto;
+    min-height: 420px;
+  }
+
+  .leader-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .leadership-mobile-nav {
@@ -1179,5 +1199,46 @@ body {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+}
+
+/* Very small phones (< 480px): tighten leadership card spacing */
+@media (max-width: 480px) {
+  .leader-banner-card {
+    flex: 0 0 calc(100vw - 1.5rem);
+    min-width: calc(100vw - 1.5rem);
+    min-height: 360px;
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .leader-content-side {
+    padding: 1.25rem 1rem;
+  }
+
+  .leader-badge-pill {
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+  }
+
+  .leader-headline {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .leader-quote {
+    font-size: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .leader-name {
+    font-size: 0.8rem;
+  }
+
+  .leader-role {
+    font-size: 0.7rem;
+  }
+
+  .leader-photo-side {
+    min-height: 360px;
   }
 }
