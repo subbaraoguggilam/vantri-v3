@@ -1,0 +1,58 @@
+[
+  {
+    "id": "VNT-2024-001",
+    "name": "Subbarao Guggilam",
+    "workshop": "Generative AI & Autonomous Agent Architecture",
+    "mode": "Offline Campus Bootcamp",
+    "college": "Vantri Institute of Advanced Tech",
+    "issueDate": "October 15, 2026",
+    "founder": "Subbarao Guggilam",
+    "founderRole": "Founder & CEO, Vantri (V3)",
+    "cofounder": "Devabathini Veranjaneyulu",
+    "cofounderRole": "Co-Founder, Vantri (V3)",
+    "coordinator": "Dr. K. S. Raman",
+    "coordinatorRole": "Academic & Workshop Coordinator"
+  },
+  {
+    "id": "VNT-2024-002",
+    "name": "Karthik Varma",
+    "workshop": "AWS Cloud Foundations & DevOps Automation",
+    "mode": "Online Live Workshop",
+    "college": "National Institute of Technology",
+    "issueDate": "October 18, 2026",
+    "founder": "Subbarao Guggilam",
+    "founderRole": "Founder & CEO, Vantri (V3)",
+    "cofounder": "Devabathini Veranjaneyulu",
+    "cofounderRole": "Co-Founder, Vantri (V3)",
+    "coordinator": "Prof. R. M. Reddy",
+    "coordinatorRole": "College Coordinator"
+  },
+  {
+    "id": "VNT-2024-003",
+    "name": "Pooja Sundaram",
+    "workshop": "Prompt Engineering & Claude Vibe Coding",
+    "mode": "Offline Campus Bootcamp",
+    "college": "Sri Venkateswara University",
+    "issueDate": "October 20, 2026",
+    "founder": "Subbarao Guggilam",
+    "founderRole": "Founder & CEO, Vantri (V3)",
+    "cofounder": "Devabathini Veranjaneyulu",
+    "cofounderRole": "Co-Founder, Vantri (V3)",
+    "coordinator": "Dr. S. K. Lakshmi",
+    "coordinatorRole": "Workshop Coordinator"
+  },
+  {
+    "id": "VNT-2024-004",
+    "name": "Naveen Teja",
+    "workshop": "Robotic Process Automation (RPA) & Modern Web Systems",
+    "mode": "Online Live Workshop",
+    "college": "Aditya Engineering College",
+    "issueDate": "October 22, 2026",
+    "founder": "Subbarao Guggilam",
+    "founderRole": "Founder & CEO, Vantri (V3)",
+    "cofounder": "Devabathini Veranjaneyulu",
+    "cofounderRole": "Co-Founder, Vantri (V3)",
+    "coordinator": "Prof. V. Chaitanya",
+    "coordinatorRole": "College Coordinator"
+  }
+]

@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Vantri (V3) Admin Portal | Personal Space & Management Dashboard</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+  <!-- Google Fonts: DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-blue: #1548b7;
+      --navy-dark: #00227a;
+      --bg-dark: #0f172a;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-cyan: #32b7ec;
+      --gold-accent: #d97706;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Admin Nav */
+    .admin-navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .admin-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--navy-dark);
+    }
+
+    .admin-logo-box {
+      width: 42px;
+      height: 42px;
+      background: #002e99;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .admin-logo-box img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .admin-title-wrap h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--navy-dark);
+      line-height: 1.1;
+    }
+
+    .admin-title-wrap span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold-accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary-blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #ffffff;
+    }
+
+    .btn-success {
+      background: #ecfdf5;
+      color: var(--success);
+      border: 1px solid #a7f3d0;
+    }
+
+    .btn-success:hover {
+      background: var(--success);
+      color: #ffffff;
+    }
+
+    /* Auth Login View */
+    .login-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px -15px rgba(0, 34, 122, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 440px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .login-avatar {
+      width: 64px;
+      height: 64px;
+      background: #eff6ff;
+      color: var(--primary-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.25rem;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      background: #f8fafc;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(21, 72, 183, 0.12);
+    }
+
+    /* Dashboard Layout */
+    .dashboard-layout {
+      display: none;
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 2rem 1.5rem;
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dash-welcome h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+
+    .dash-welcome p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.4rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .stat-icon.blue { background: #eff6ff; color: var(--primary-blue); }
+    .stat-icon.green { background: #ecfdf5; color: var(--success); }
+    .stat-icon.gold { background: #fef3c7; color: var(--gold-accent); }
+    .stat-icon.purple { background: #f3e8ff; color: #9333ea; }
+
+    .stat-info span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .stat-info strong {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+
+    /* Navigation Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 1.75rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 0.85rem 1.4rem;
+      background: transparent;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      color: var(--primary-blue);
+      border-bottom-color: var(--primary-blue);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Content Cards */
+    .card-panel {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .card-panel-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      padding: 0.85rem 1rem;
+      border-bottom: 1.5px solid var(--border-color);
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: #f8fafc;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pill.blue { background: #eff6ff; color: var(--primary-blue); }
+    .badge-pill.green { background: #ecfdf5; color: var(--success); }
+    .badge-pill.gold { background: #fef3c7; color: var(--gold-accent); }
+
+    /* Modals */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-window-header h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Admin Bar -->
+  <header class="admin-navbar">
+    <a href="index.html" class="admin-logo-wrap">
+      <div class="admin-logo-box">
+        <img src="assets/logo.png" alt="Vantri Logo">
+      </div>
+      <div class="admin-title-wrap">
+        <h1>Vantri Admin</h1>
+        <span>Personal Space &bull; Management</span>
+      </div>
+    </a>
+
+    <div class="admin-nav-actions">
+      <a href="index.html" class="btn btn-outline">
+        <i class="fa-solid fa-arrow-left"></i> View Website
+      </a>
+      <button id="btnLogout" class="btn btn-danger" style="display: none;" onclick="adminLogout()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+      </button>
+    </div>
+  </header>
+
+  <!-- Login Section (Visible when logged out) -->
+  <main class="login-container" id="loginSection">
+    <div class="login-card">
+      <div class="login-avatar">
+        <i class="fa-solid fa-user-shield"></i>
+      </div>
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 0.4rem;">
+        Administrator Login
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.75rem;">
+        Sign in to your private personal space to manage workshops, issue certificates, and update brand logos.
+      </p>
+
+      <form onsubmit="event.preventDefault(); adminLogin();">
+        <div class="form-group">
+          <label for="adminUser">Username / Admin ID</label>
+          <input type="text" id="adminUser" class="form-control" placeholder="e.g. admin or subbarao" required value="admin">
+        </div>
+
+        <div class="form-group">
+          <label for="adminPass">Password</label>
+          <input type="password" id="adminPass" class="form-control" placeholder="Enter secure password" required value="vantri2026">
+        </div>
+
+        <div id="loginError" style="display: none; background: #fff1f2; color: #be123c; padding: 0.65rem; border-radius: 8px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem;">
+          Invalid credentials. Please verify your login credentials.
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+          <i class="fa-solid fa-lock-open"></i> Access Personal Dashboard
+        </button>
+
+        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 1.25rem;">
+          Default Access: Username: <strong style="color: var(--navy-dark);">admin</strong> &bull; Password: <strong style="color: var(--navy-dark);">vantri2026</strong>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <!-- Authenticated Dashboard Space (Visible when logged in) -->
+  <div class="dashboard-layout" id="dashboardLayout">
+    
+    <!-- Welcome Header -->
+    <div class="dash-header">
+      <div class="dash-welcome">
+        <h2>Founder &amp; Leadership Workspace</h2>
+        <p>Welcome back, <strong id="adminDisplayName">Subbarao Guggilam</strong>. Manage and synchronize your startup's workshops, certificates, and logos.</p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn btn-success" onclick="openIssueCertModal()">
+          <i class="fa-solid fa-plus-circle"></i> Issue Certificate
+        </button>
+        <button class="btn btn-primary" onclick="openAddWorkshopModal()">
+          <i class="fa-solid fa-chalkboard-user"></i> Create Workshop
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Stats Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fa-solid fa-award"></i></div>
+        <div class="stat-info">
+          <span>Certificates Issued</span>
+          <strong id="statCertCount">4</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon green"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="stat-info">
+          <span>Active Workshops</span>
+          <strong id="statWorkshopCount">6</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon gold"><i class="fa-solid fa-images"></i></div>
+        <div class="stat-info">
+          <span>Tech &amp; Partner Logos</span>
+          <strong id="statLogoCount">6</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon purple"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="stat-info">
+          <span>Partner Colleges</span>
+          <strong>4</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-certs', this)">
+        <i class="fa-solid fa-award"></i> Certificate Management
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-workshops', this)">
+        <i class="fa-solid fa-laptop-code"></i> Workshop Curriculums
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-logos', this)">
+        <i class="fa-solid fa-photo-film"></i> Brand &amp; Workshop Logos
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-export', this)">
+        <i class="fa-solid fa-database"></i> Backup &amp; Sync Data
+      </button>
+    </div>
+
+    <!-- TAB 1: Certificate Management -->
+    <div class="tab-content active" id="tab-certs">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <h3>Issued Participant Certificates</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">All attendees verified in this list can instantly download their certificate with dynamic QR on the main website.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openIssueCertModal()">
+            <i class="fa-solid fa-user-plus"></i> Issue New Certificate
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Certificate ID</th>
+                <th>Attendee Name</th>
+                <th>Workshop Topic</th>
+                <th>Institution / College</th>
+                <th>Mode</th>
+                <th>Issue Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="certTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Workshop Management -->
+    <div class="tab-content" id="tab-workshops">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <h3>Workshop Offerings</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Create, update, or schedule upcoming AI, Cloud, and Software Engineering bootcamps.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddWorkshopModal()">
+            <i class="fa-solid fa-plus"></i> Add New Workshop
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Workshop Title</th>
+                <th>Category</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th>Target Audience</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="workshopTableBody">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Logos & Assets Management -->
+    <div class="tab-content" id="tab-logos">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <h3>Workshop Tech &amp; Partner Logos</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Manage the technology logos featured in the infinite marquee and workshop headers.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddLogoModal()">
+            <i class="fa-solid fa-upload"></i> Add New Logo
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem;" id="logosGrid">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Backup & Sync Data -->
+    <div class="tab-content" id="tab-export">
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <h3>Synchronize with Website</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Download updated JSON records to commit directly to your GitHub repository or save backups.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="exportCertificatesJSON()">
+            <i class="fa-solid fa-download"></i> Download certificates.json
+          </button>
+          <button class="btn btn-outline" onclick="copyCertificatesJSON()">
+            <i class="fa-solid fa-copy"></i> Copy JSON to Clipboard
+          </button>
+          <button class="btn btn-danger" onclick="resetToDefaultData()">
+            <i class="fa-solid fa-rotate-left"></i> Reset to Default Sample Data
+          </button>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <label style="font-weight: 700; font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Live Data Preview (JSON format):</label>
+          <pre id="jsonPreviewBox" style="background: #0f172a; color: #38bdf8; padding: 1.25rem; border-radius: 12px; font-size: 0.82rem; overflow-x: auto; max-height: 300px;"></pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL: Issue New Certificate -->
+  <div class="modal-backdrop" id="modalIssueCert">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3>Issue Attendee Certificate</h3>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); saveNewCertificate();">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Attendee Full Name</label>
+            <input type="text" id="newCertName" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+          </div>
+          <div class="form-group">
+            <label>Certificate ID</label>
+            <input type="text" id="newCertId" class="form-control" placeholder="e.g. VNT-2024-005" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Workshop Title</label>
+          <input type="text" id="newCertWorkshop" class="form-control" placeholder="e.g. Generative AI & Autonomous Agent Architecture" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Institution / College</label>
+            <input type="text" id="newCertCollege" class="form-control" placeholder="e.g. IIT Madras / College Name" required>
+          </div>
+          <div class="form-group">
+            <label>Training Mode</label>
+            <select id="newCertMode" class="form-control">
+              <option value="Offline Campus Bootcamp">Offline Campus Bootcamp</option>
+              <option value="Online Live Workshop">Online Live Workshop</option>
+              <option value="Executive Masterclass">Executive Masterclass</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Issue</label>
+          <input type="text" id="newCertDate" class="form-control" placeholder="e.g. October 25, 2026" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="closeModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-circle-check"></i> Issue &amp; Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add Workshop -->
+  <div class="modal-backdrop" id="modalAddWorkshop">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3>Create New Workshop</h3>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); saveNewWorkshop();">
+        <div class="form-group">
+          <label>Workshop Title</label>
+          <input type="text" id="newWsTitle" class="form-control" placeholder="e.g. DeepSeek & Open Source AI Deployment" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="newWsCat" class="form-control" placeholder="e.g. Artificial Intelligence" required>
+          </div>
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" id="newWsDuration" class="form-control" placeholder="e.g. 2 Days / 16 Hours" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Target Audience</label>
+          <input type="text" id="newWsAudience" class="form-control" placeholder="e.g. College Students, Developers, Tech Leads" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="closeModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Workshop</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add Logo -->
+  <div class="modal-backdrop" id="modalAddLogo">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3>Add Workshop Tech Logo</h3>
+        <button class="close-btn" onclick="closeModals()">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); saveNewLogo();">
+        <div class="form-group">
+          <label>Technology / Brand Name</label>
+          <input type="text" id="newLogoName" class="form-control" placeholder="e.g. Kubernetes, Docker, LangChain" required>
+        </div>
+
+        <div class="form-group">
+          <label>Icon / Logo Image URL (or FontAwesome Class)</label>
+          <input type="text" id="newLogoUrl" class="form-control" placeholder="e.g. fa-brands fa-docker or image URL" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="closeModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Add Logo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Script Logic -->
+  <script>
+    // Default initial data sets
+    const DEFAULT_CERTS = [
+      {
+        "id": "VNT-2024-001",
+        "name": "Subbarao Guggilam",
+        "workshop": "Generative AI & Autonomous Agent Architecture",
+        "mode": "Offline Campus Bootcamp",
+        "college": "Vantri Institute of Advanced Tech",
+        "issueDate": "October 15, 2026",
+        "founder": "Subbarao Guggilam",
+        "founderRole": "Founder & CEO, Vantri (V3)",
+        "cofounder": "Devabathini Veranjaneyulu",
+        "cofounderRole": "Co-Founder, Vantri (V3)",
+        "coordinator": "Dr. K. S. Raman",
+        "coordinatorRole": "Academic & Workshop Coordinator"
+      },
+      {
+        "id": "VNT-2024-002",
+        "name": "Karthik Varma",
+        "workshop": "AWS Cloud Foundations & DevOps Automation",
+        "mode": "Online Live Workshop",
+        "college": "National Institute of Technology",
+        "issueDate": "October 18, 2026",
+        "founder": "Subbarao Guggilam",
+        "founderRole": "Founder & CEO, Vantri (V3)",
+        "cofounder": "Devabathini Veranjaneyulu",
+        "cofounderRole": "Co-Founder, Vantri (V3)",
+        "coordinator": "Prof. R. M. Reddy",
+        "coordinatorRole": "College Coordinator"
+      },
+      {
+        "id": "VNT-2024-003",
+        "name": "Pooja Sundaram",
+        "workshop": "Prompt Engineering & Claude Vibe Coding",
+        "mode": "Offline Campus Bootcamp",
+        "college": "Sri Venkateswara University",
+        "issueDate": "October 20, 2026",
+        "founder": "Subbarao Guggilam",
+        "founderRole": "Founder & CEO, Vantri (V3)",
+        "cofounder": "Devabathini Veranjaneyulu",
+        "cofounderRole": "Co-Founder, Vantri (V3)",
+        "coordinator": "Dr. S. K. Lakshmi",
+        "coordinatorRole": "Workshop Coordinator"
+      },
+      {
+        "id": "VNT-2024-004",
+        "name": "Naveen Teja",
+        "workshop": "Robotic Process Automation (RPA) & Modern Web Systems",
+        "mode": "Online Live Workshop",
+        "college": "Aditya Engineering College",
+        "issueDate": "October 22, 2026",
+        "founder": "Subbarao Guggilam",
+        "founderRole": "Founder & CEO, Vantri (V3)",
+        "cofounder": "Devabathini Veranjaneyulu",
+        "cofounderRole": "Co-Founder, Vantri (V3)",
+        "coordinator": "Prof. V. Chaitanya",
+        "coordinatorRole": "College Coordinator"
+      }
+    ];
+
+    const DEFAULT_WORKSHOPS = [
+      { title: "Claude & Autonomous AI Agents", category: "Generative AI", duration: "2 Days / 16 Hours", status: "Active", audience: "Students & Developers" },
+      { title: "Vibe Coding & Rapid Fullstack Prototyping", category: "Modern Web", duration: "3 Days / 24 Hours", status: "Active", audience: "Product Builders" },
+      { title: "Prompt Engineering & Reasoning Architectures", category: "AI Operations", duration: "1 Day / 8 Hours", status: "Active", audience: "All Disciplines" },
+      { title: "AWS Cloud & Serverless Infrastructure", category: "Cloud & DevOps", duration: "2 Days / 16 Hours", status: "Active", audience: "Engineers & IT" },
+      { title: "Robotic Process Automation (RPA) with Python", category: "Automation", duration: "2 Days / 16 Hours", status: "Active", audience: "Enterprises" },
+      { title: "Production Web Development & Modern APIs", category: "Full-Stack", duration: "4 Days / 32 Hours", status: "Active", audience: "Job Seekers" }
+    ];
+
+    const DEFAULT_LOGOS = [
+      { name: "AWS Cloud", icon: "fa-brands fa-aws", type: "tech" },
+      { name: "Python & RPA", icon: "fa-brands fa-python", type: "tech" },
+      { name: "JavaScript & Web", icon: "fa-brands fa-js", type: "tech" },
+      { name: "Node.js Architecture", icon: "fa-brands fa-node", type: "tech" },
+      { name: "Docker Containers", icon: "fa-brands fa-docker", type: "tech" },
+      { name: "GitHub Operations", icon: "fa-brands fa-github", type: "tech" }
+    ];
+
+    // Local Storage helpers
+    function getCerts() {
+      const data = localStorage.getItem('vantri_certificates');
+      return data ? JSON.parse(data) : DEFAULT_CERTS;
+    }
+
+    function saveCerts(list) {
+      localStorage.setItem('vantri_certificates', JSON.stringify(list));
+      renderDashboard();
+    }
+
+    function getWorkshops() {
+      const data = localStorage.getItem('vantri_workshops');
+      return data ? JSON.parse(data) : DEFAULT_WORKSHOPS;
+    }
+
+    function saveWorkshops(list) {
+      localStorage.setItem('vantri_workshops', JSON.stringify(list));
+      renderDashboard();
+    }
+
+    function getLogos() {
+      const data = localStorage.getItem('vantri_logos');
+      return data ? JSON.parse(data) : DEFAULT_LOGOS;
+    }
+
+    function saveLogos(list) {
+      localStorage.setItem('vantri_logos', JSON.stringify(list));
+      renderDashboard();
+    }
+
+    // Auth functions
+    function adminLogin() {
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+
+      // Check credentials (admin / vantri2026 or subbarao / vantri2026)
+      if ((u.toLowerCase() === 'admin' || u.toLowerCase() === 'subbarao') && p === 'vantri2026') {
+        sessionStorage.setItem('vantri_admin_auth', 'true');
+        sessionStorage.setItem('vantri_admin_name', u.toLowerCase() === 'subbarao' ? 'Subbarao Guggilam' : 'Subbarao Guggilam (Admin)');
+        checkAuth();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('vantri_admin_auth');
+      sessionStorage.removeItem('vantri_admin_name');
+      checkAuth();
+    }
+
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('vantri_admin_auth') === 'true';
+      const loginSection = document.getElementById('loginSection');
+      const dashLayout = document.getElementById('dashboardLayout');
+      const btnLogout = document.getElementById('btnLogout');
+
+      if (isAuth) {
+        loginSection.style.display = 'none';
+        dashLayout.style.display = 'block';
+        btnLogout.style.display = 'inline-flex';
+        document.getElementById('adminDisplayName').textContent = sessionStorage.getItem('vantri_admin_name') || 'Administrator';
+        renderDashboard();
+      } else {
+        loginSection.style.display = 'flex';
+        dashLayout.style.display = 'none';
+        btnLogout.style.display = 'none';
+      }
+    }
+
+    // Tabs Switcher
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      const content = document.getElementById(tabId);
+      if (content) content.classList.add('active');
+    }
+
+    // Render Table and Grid Contents
+    function renderDashboard() {
+      const certs = getCerts();
+      const workshops = getWorkshops();
+      const logos = getLogos();
+
+      // Update counters
+      document.getElementById('statCertCount').textContent = certs.length;
+      document.getElementById('statWorkshopCount').textContent = workshops.length;
+      document.getElementById('statLogoCount').textContent = logos.length;
+
+      // 1. Render Certificates Table
+      const certTbody = document.getElementById('certTableBody');
+      certTbody.innerHTML = '';
+      certs.forEach((c, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong style="color: var(--primary-blue); font-family: monospace;">${c.id}</strong></td>
+          <td><strong>${c.name}</strong></td>
+          <td>${c.workshop}</td>
+          <td>${c.college}</td>
+          <td><span class="badge-pill blue">${c.mode}</span></td>
+          <td>${c.issueDate}</td>
+          <td>
+            <a href="index.html?verify=${encodeURIComponent(c.id)}#certificates" target="_blank" class="btn btn-outline" style="padding: 0.3rem 0.65rem; font-size: 0.78rem;" title="View Live Certificate">
+              <i class="fa-solid fa-eye"></i> View
+            </a>
+            <button onclick="deleteCert(${idx})" class="btn btn-danger" style="padding: 0.3rem 0.65rem; font-size: 0.78rem;" title="Delete Certificate">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        certTbody.appendChild(tr);
+      });
+
+      // 2. Render Workshops Table
+      const wsTbody = document.getElementById('workshopTableBody');
+      wsTbody.innerHTML = '';
+      workshops.forEach((w, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${w.title}</strong></td>
+          <td><span class="badge-pill gold">${w.category}</span></td>
+          <td>${w.duration}</td>
+          <td><span class="badge-pill green">${w.status}</span></td>
+          <td>${w.audience}</td>
+          <td>
+            <button onclick="deleteWorkshop(${idx})" class="btn btn-danger" style="padding: 0.3rem 0.65rem; font-size: 0.78rem;">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        wsTbody.appendChild(tr);
+      });
+
+      // 3. Render Logos Grid
+      const logosGrid = document.getElementById('logosGrid');
+      logosGrid.innerHTML = '';
+      logos.forEach((l, idx) => {
+        const card = document.createElement('div');
+        card.style.background = '#ffffff';
+        card.style.border = '1px solid var(--border-color)';
+        card.style.borderRadius = '14px';
+        card.style.padding = '1.25rem';
+        card.style.textAlign = 'center';
+        card.innerHTML = `
+          <div style="font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 0.75rem;">
+            ${l.icon.startsWith('fa-') ? `<i class="${l.icon}"></i>` : `<img src="${l.icon}" style="height: 48px; object-fit: contain;">`}
+          </div>
+          <strong style="display: block; font-size: 0.95rem; margin-bottom: 0.5rem;">${l.name}</strong>
+          <button onclick="deleteLogo(${idx})" class="btn btn-danger" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">
+            <i class="fa-solid fa-trash"></i> Remove
+          </button>
+        `;
+        logosGrid.appendChild(card);
+      });
+
+      // 4. Update JSON preview
+      document.getElementById('jsonPreviewBox').textContent = JSON.stringify(certs, null, 2);
+    }
+
+    // Modal Triggers
+    function openIssueCertModal() {
+      // Auto-generate next suggested ID
+      const certs = getCerts();
+      const nextNum = String(certs.length + 1).padStart(3, '0');
+      document.getElementById('newCertId').value = `VNT-2024-${nextNum}`;
+      document.getElementById('newCertDate').value = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById('modalIssueCert').classList.add('active');
+    }
+
+    function openAddWorkshopModal() {
+      document.getElementById('modalAddWorkshop').classList.add('active');
+    }
+
+    function openAddLogoModal() {
+      document.getElementById('modalAddLogo').classList.add('active');
+    }
+
+    function closeModals() {
+      document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('active'));
+    }
+
+    // Save Handlers
+    function saveNewCertificate() {
+      const certs = getCerts();
+      const newCert = {
+        id: document.getElementById('newCertId').value.trim().toUpperCase(),
+        name: document.getElementById('newCertName').value.trim(),
+        workshop: document.getElementById('newCertWorkshop').value.trim(),
+        college: document.getElementById('newCertCollege').value.trim(),
+        mode: document.getElementById('newCertMode').value,
+        issueDate: document.getElementById('newCertDate').value.trim(),
+        founder: "Subbarao Guggilam",
+        founderRole: "Founder & CEO, Vantri (V3)",
+        cofounder: "Devabathini Veranjaneyulu",
+        cofounderRole: "Co-Founder, Vantri (V3)",
+        coordinator: "Academic & Workshop Coordinator",
+        coordinatorRole: "College Coordinator"
+      };
+
+      certs.unshift(newCert); // Place at top
+      saveCerts(certs);
+      closeModals();
+      alert(`Certificate ${newCert.id} successfully issued for ${newCert.name}!\nIt is now live and verifiable on the website.`);
+    }
+
+    function deleteCert(index) {
+      if (confirm('Are you sure you want to delete this certificate?')) {
+        const certs = getCerts();
+        certs.splice(index, 1);
+        saveCerts(certs);
+      }
+    }
+
+    function saveNewWorkshop() {
+      const workshops = getWorkshops();
+      const newWs = {
+        title: document.getElementById('newWsTitle').value.trim(),
+        category: document.getElementById('newWsCat').value.trim(),
+        duration: document.getElementById('newWsDuration').value.trim(),
+        status: "Active",
+        audience: document.getElementById('newWsAudience').value.trim()
+      };
+      workshops.unshift(newWs);
+      saveWorkshops(workshops);
+      closeModals();
+      alert(`Workshop "${newWs.title}" created successfully!`);
+    }
+
+    function deleteWorkshop(index) {
+      if (confirm('Delete this workshop?')) {
+        const ws = getWorkshops();
+        ws.splice(index, 1);
+        saveWorkshops(ws);
+      }
+    }
+
+    function saveNewLogo() {
+      const logos = getLogos();
+      const newLogo = {
+        name: document.getElementById('newLogoName').value.trim(),
+        icon: document.getElementById('newLogoUrl').value.trim(),
+        type: "tech"
+      };
+      logos.push(newLogo);
+      saveLogos(logos);
+      closeModals();
+      alert(`Logo "${newLogo.name}" added successfully!`);
+    }
+
+    function deleteLogo(index) {
+      if (confirm('Remove this logo?')) {
+        const logos = getLogos();
+        logos.splice(index, 1);
+        saveLogos(logos);
+      }
+    }
+
+    // Export & Reset
+    function exportCertificatesJSON() {
+      const data = JSON.stringify(getCerts(), null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'certificates.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function copyCertificatesJSON() {
+      const data = JSON.stringify(getCerts(), null, 2);
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(data).then(() => {
+          alert('certificates.json copied to clipboard!');
+        });
+      } else {
+        prompt('Copy your JSON data:', data);
+      }
+    }
+
+    function resetToDefaultData() {
+      if (confirm('Reset all certificates, workshops, and logos to initial sample data?')) {
+        localStorage.removeItem('vantri_certificates');
+        localStorage.removeItem('vantri_workshops');
+        localStorage.removeItem('vantri_logos');
+        renderDashboard();
+        alert('Reset complete.');
+      }
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+    });
+  </script>
+</body>
+</html>

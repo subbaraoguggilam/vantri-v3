@@ -135,4 +135,46 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { passive: true });
   }
+
+  // Footer Administrator Login Logic
+  window.checkFooterAdminAuth = function () {
+    const isAuth = sessionStorage.getItem('vantri_admin_auth') === 'true';
+    const form = document.getElementById('footerAdminForm');
+    const logged = document.getElementById('footerAdminLoggedIn');
+    const nameEl = document.getElementById('footerAdminName');
+
+    if (form && logged) {
+      if (isAuth) {
+        form.style.display = 'none';
+        logged.style.display = 'flex';
+        if (nameEl) nameEl.textContent = sessionStorage.getItem('vantri_admin_name') || 'Subbarao Guggilam';
+      } else {
+        form.style.display = 'flex';
+        logged.style.display = 'none';
+      }
+    }
+  };
+
+  window.handleFooterAdminLogin = function () {
+    const u = (document.getElementById('footerAdminUser')?.value || '').trim();
+    const p = (document.getElementById('footerAdminPass')?.value || '').trim();
+    const err = document.getElementById('footerAdminError');
+
+    if ((u.toLowerCase() === 'admin' || u.toLowerCase() === 'subbarao') && p === 'vantri2026') {
+      if (err) err.style.display = 'none';
+      sessionStorage.setItem('vantri_admin_auth', 'true');
+      sessionStorage.setItem('vantri_admin_name', u.toLowerCase() === 'subbarao' ? 'Subbarao Guggilam' : 'Subbarao Guggilam (Admin)');
+      window.location.href = 'admin.html';
+    } else {
+      if (err) err.style.display = 'flex';
+    }
+  };
+
+  window.handleFooterAdminLogout = function () {
+    sessionStorage.removeItem('vantri_admin_auth');
+    sessionStorage.removeItem('vantri_admin_name');
+    window.checkFooterAdminAuth();
+  };
+
+  window.checkFooterAdminAuth();
 });

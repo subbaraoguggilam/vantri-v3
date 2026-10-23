@@ -56,6 +56,7 @@
         <li><a href="#tech-rental">Rent / Buy SaaS</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#features">Why Vantri</a></li>
+        <li><a href="#certificates" class="nav-cert-btn"><i class="fa-solid fa-award"></i> Verify Certificate</a></li>
         <li>
           <button type="button" class="btn btn-secondary" onclick="openModal('General Consultation')">
             Contact Us
@@ -555,6 +556,248 @@
         </div>
       </div>
     </section>
+
+    <!-- Certificate Verification & Instant Download Section -->
+    <section class="section cert-section" id="certificates">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge"><i class="fa-solid fa-award"></i> Credential Verification</span>
+          <h2>Verify &amp; Download Workshop Certificate</h2>
+          <p>Enter your unique Certificate ID to verify credentials and download your high-resolution official certificate with authentic signatures and QR security.</p>
+        </div>
+
+        <!-- Verification Search Card -->
+        <div class="cert-search-card">
+          <form onsubmit="event.preventDefault(); verifyCertificate();" class="cert-input-group">
+            <div class="cert-input-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="certInputId" class="cert-input-field" placeholder="Enter Unique Certificate ID (e.g. VNT-2024-001)" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-shield-halved"></i> Verify Certificate
+            </button>
+          </form>
+
+          <div class="cert-sample-chips">
+            <span><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> Quick-test sample IDs:</span>
+            <span class="cert-chip" onclick="testCertCode('VNT-2024-001')">VNT-2024-001</span>
+            <span class="cert-chip" onclick="testCertCode('VNT-2024-002')">VNT-2024-002</span>
+            <span class="cert-chip" onclick="testCertCode('VNT-2024-003')">VNT-2024-003</span>
+            <span class="cert-chip" onclick="testCertCode('VNT-2024-004')">VNT-2024-004</span>
+          </div>
+        </div>
+
+        <!-- Alert Not Found (Hidden by default) -->
+        <div class="cert-not-found" id="certNotFound">
+          <div class="cert-not-found-inner">
+            <i class="fa-solid fa-triangle-exclamation cert-not-found-icon"></i>
+            <div>
+              <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem;">Certificate Not Found</h4>
+              <p style="margin-bottom: 0; font-size: 0.92rem;">
+                No verified attendee record exists for ID: <strong id="notFoundQueryText" style="color: #be123c;"></strong>. Please double-check the unique code printed on your workshop pass or contact Vantri support.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Result & Dynamic Certificate Preview (Hidden until verified) -->
+        <div class="cert-result-wrap" id="certResultWrap">
+          
+          <!-- Summary Banner & Action Buttons -->
+          <div class="cert-summary-banner">
+            <div>
+              <div class="cert-status-badge">
+                <i class="fa-solid fa-circle-check"></i> Official Verified Credential
+              </div>
+              <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--heading-dark);" id="resAttendeeName">Attendee Name</h3>
+              <p style="color: var(--primary-blue); font-weight: 700; margin-bottom: 0.5rem;" id="resWorkshopTitle">Workshop Topic</p>
+              
+              <div class="cert-summary-grid">
+                <div class="cert-summary-item">
+                  <span>Certificate ID</span>
+                  <strong id="resCertId">VNT-2024-001</strong>
+                </div>
+                <div class="cert-summary-item">
+                  <span>Issue Date</span>
+                  <strong id="resIssueDate">October 15, 2026</strong>
+                </div>
+                <div class="cert-summary-item">
+                  <span>Institution / Mode</span>
+                  <strong id="resCollege">College Name (Offline)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download and Export Toolbar -->
+            <div class="cert-action-bar">
+              <button type="button" class="btn btn-primary" id="btnDownloadPDF" onclick="downloadCertPDF()">
+                <i class="fa-solid fa-file-pdf"></i> Download Official PDF
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="printCertificate()">
+                <i class="fa-solid fa-print"></i> Print
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="copyVerificationLink()">
+                <i class="fa-solid fa-link"></i> Copy Link
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic High-Res Certificate Template (Exportable / Printable) -->
+          <div style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin: 1.25rem 0 0.5rem;">
+            <i class="fa-solid fa-expand" style="color: var(--primary-blue);"></i> Real-Time Vector Certificate Preview &bull; Ready for High-Resolution PDF Download &amp; Print
+          </div>
+          <div class="cert-preview-scroller">
+            <div class="certificate-paper" id="printableCertificate">
+              <div class="cert-border-outer">
+                
+                <!-- Corner Gold Accents -->
+                <div class="cert-corner-tl"></div>
+                <div class="cert-corner-tr"></div>
+                <div class="cert-corner-bl"></div>
+                <div class="cert-corner-br"></div>
+
+                <div class="cert-border-inner">
+                  
+                  <!-- Subtle Background Security Watermark -->
+                  <svg class="cert-watermark-bg" viewBox="0 0 100 100" fill="none" stroke="#00227a">
+                    <path d="M15 15 L50 88 L85 15" stroke-width="6"/>
+                    <path d="M28 15 L50 68 L72 15" stroke-width="5"/>
+                    <path d="M40 15 L50 48 L60 15" stroke-width="4"/>
+                  </svg>
+
+                  <!-- Header Area -->
+                  <div class="cert-header-row">
+                    <div class="cert-brand-brand">
+                      <div class="cert-logo-box">
+                        <img src="assets/logo.png" alt="Vantri V3 Logo">
+                      </div>
+                      <div>
+                        <div class="cert-brand-title">Vantri Innovations (V3)</div>
+                        <div class="cert-brand-subtitle">Vision &bull; Visualize &bull; Victory &bull; Next-Gen Tech</div>
+                      </div>
+                    </div>
+
+                    <div class="cert-id-badge">
+                      <span>VERIFIED CREDENTIAL</span>
+                      <strong id="certTplId">VNT-2024-001</strong>
+                    </div>
+                  </div>
+
+                  <!-- Certificate Main Body -->
+                  <div class="cert-main-body">
+                    <div class="cert-main-headline">Certificate of Participation &amp; Excellence</div>
+                    <div class="cert-sub-ribbon">Official Technical Workshop Credential</div>
+                    
+                    <div class="cert-confer-text">This credential is proudly conferred upon</div>
+                    <div class="cert-recipient-name" id="certTplName">Subbarao Guggilam</div>
+                    
+                    <div class="cert-completion-desc">
+                      for active participation and successful completion of the comprehensive professional workshop on
+                    </div>
+
+                    <div class="cert-workshop-name-pill" id="certTplWorkshop">
+                      Generative AI &amp; Autonomous Agent Architecture
+                    </div>
+
+                    <div class="cert-meta-notes" id="certTplCollegeMode">
+                      Conducted in collaboration with Vantri Institute of Advanced Tech &bull; Offline Campus Bootcamp
+                    </div>
+
+                    <div style="font-size: 0.85rem; color: #475569; margin-top: 0.2rem;">
+                      Date of Issue: <strong id="certTplDate" style="color: #0f172a;">October 15, 2026</strong>
+                    </div>
+                  </div>
+
+                  <!-- Footer Area: Dynamic QR Code + Gold Seal + 3 Signatures -->
+                  <div class="cert-footer-row">
+                    
+                    <!-- Dynamic QR Verification Code -->
+                    <div class="cert-qr-area">
+                      <div class="cert-qr-box" id="certQrCodeBox" title="Scan with mobile camera to verify authenticity">
+                        <!-- Dynamic SVG injected by qrcode.js -->
+                      </div>
+                      <div class="cert-qr-label">Scan to Verify</div>
+                    </div>
+
+                    <!-- Official Gold Seal Medallion -->
+                    <div class="cert-seal-area">
+                      <svg class="cert-seal-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fef08a"/>
+                            <stop offset="45%" stop-color="#f59e0b"/>
+                            <stop offset="100%" stop-color="#b45309"/>
+                          </radialGradient>
+                        </defs>
+                        <!-- 24-point Scalloped Star/Medallion -->
+                        <circle cx="50" cy="50" r="46" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1.5"/>
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="2,2"/>
+                        <circle cx="50" cy="50" r="36" fill="#00227a"/>
+                        <circle cx="50" cy="50" r="32" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+                        
+                        <!-- Emblem & Stars inside seal -->
+                        <path d="M50 24 L52.5 31.5 L60 31.5 L54 36 L56.5 43.5 L50 39 L43.5 43.5 L46 36 L40 31.5 L47.5 31.5 Z" fill="#fef08a"/>
+                        <text x="50" y="55" font-family="'DM Sans', sans-serif" font-size="6.5" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">OFFICIAL</text>
+                        <text x="50" y="63" font-family="'DM Sans', sans-serif" font-size="5.5" font-weight="800" fill="#fde047" text-anchor="middle" letter-spacing="1">VERIFIED</text>
+                        <text x="50" y="70" font-family="'DM Sans', sans-serif" font-size="4.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">V3 INNOVATIONS</text>
+                      </svg>
+                    </div>
+
+                    <!-- 3 Official Signatures (Founder, Co-Founder, College Coordinator) -->
+                    <div class="cert-signatures-grid">
+                      
+                      <!-- Signature 1: Founder & CEO -->
+                      <div class="cert-sig-block">
+                        <div class="cert-sig-preview">
+                          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" class="sig-svg">
+                            <path d="M15,42 C25,20 35,10 45,18 C52,24 45,45 38,48 C30,51 28,32 50,30 C70,28 90,20 105,32 C115,40 100,50 120,40 C140,30 160,25 185,28" fill="none" stroke="#00227a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M30,35 C60,34 110,36 175,34" fill="none" stroke="#00227a" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="188" cy="27" r="1.5" fill="#00227a"/>
+                          </svg>
+                        </div>
+                        <div class="cert-sig-line"></div>
+                        <strong class="cert-sig-name" id="certTplFounderName">Subbarao Guggilam</strong>
+                        <span class="cert-sig-role" id="certTplFounderRole">Founder &amp; CEO, Vantri (V3)</span>
+                      </div>
+
+                      <!-- Signature 2: Co-Founder -->
+                      <div class="cert-sig-block">
+                        <div class="cert-sig-preview">
+                          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" class="sig-svg">
+                            <path d="M20,15 C20,38 25,48 35,46 C45,44 48,22 42,18 C36,14 30,30 48,36 C65,42 80,26 95,30 C110,34 125,28 140,35 C155,42 165,30 180,32" fill="none" stroke="#00227a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M25,50 C60,48 120,47 175,49" fill="none" stroke="#00227a" stroke-width="1.5" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                        <div class="cert-sig-line"></div>
+                        <strong class="cert-sig-name" id="certTplCofounderName">Devabathini Veranjaneyulu</strong>
+                        <span class="cert-sig-role" id="certTplCofounderRole">Co-Founder, Vantri (V3)</span>
+                      </div>
+
+                      <!-- Signature 3: College Coordinator -->
+                      <div class="cert-sig-block">
+                        <div class="cert-sig-preview">
+                          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" class="sig-svg">
+                            <path d="M22,25 C30,12 42,12 40,32 C38,48 55,48 65,30 C75,15 85,38 98,34 C110,30 120,42 135,32 C150,22 165,28 182,24" fill="none" stroke="#00227a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M35,46 C70,44 110,43 170,45" fill="none" stroke="#00227a" stroke-width="1.5" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                        <div class="cert-sig-line"></div>
+                        <strong class="cert-sig-name" id="certTplCoordName">Dr. K. S. Raman</strong>
+                        <span class="cert-sig-role" id="certTplCoordRole">Academic Coordinator</span>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <!-- Interactive Contact & Inquiry Modal -->
@@ -637,7 +880,8 @@
             <li><a href="#tech-rental">Rent SaaS Technology</a></li>
             <li><a href="#tech-rental">Turnkey Tech Buyout</a></li>
             <li><a href="#tech-rental">Custom AI Integrations</a></li>
-            <li><a href="#tech-rental">Enterprise Licensing</a></li>
+            <li><a href="#certificates">Verify Certificate</a></li>
+            <li><a href="#certificates">Download Certificate</a></li>
           </ul>
         </div>
 
@@ -652,14 +896,74 @@
         </div>
       </div>
 
+      <!-- Footer Administrator & Leadership Login Section -->
+      <div class="footer-admin-section" id="adminLoginSection">
+        <div class="footer-admin-card">
+          <div class="footer-admin-header">
+            <div class="footer-admin-icon">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div>
+              <h4>Administrator &amp; Leadership Login</h4>
+              <p>Authorized personal space for managing workshops, updating logos, and issuing attendee certificates.</p>
+            </div>
+          </div>
+
+          <!-- Logged Out Form -->
+          <form id="footerAdminForm" onsubmit="event.preventDefault(); handleFooterAdminLogin();" class="footer-admin-form">
+            <div class="footer-admin-inputs">
+              <div class="footer-input-wrap">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="footerAdminUser" placeholder="Admin Username" required autocomplete="username" value="admin">
+              </div>
+              <div class="footer-input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="footerAdminPass" placeholder="Admin Password" required autocomplete="current-password" value="vantri2026">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary footer-admin-btn">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Login to Admin Space
+            </button>
+          </form>
+
+          <div id="footerAdminError" class="footer-admin-error" style="display: none;">
+            <i class="fa-solid fa-circle-exclamation"></i> Invalid credentials. Please try again.
+          </div>
+
+          <!-- Logged In State (Visible if session exists) -->
+          <div id="footerAdminLoggedIn" class="footer-admin-logged" style="display: none;">
+            <div>
+              <span class="cert-status-badge" style="margin-bottom: 0.35rem;">
+                <i class="fa-solid fa-circle-check"></i> Authenticated Admin Session
+              </span>
+              <p style="margin-bottom: 0; font-size: 0.95rem; color: #ffffff;">
+                Signed in as <strong id="footerAdminName" style="color: var(--accent-cyan);">Subbarao Guggilam</strong>
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="admin.html" class="btn btn-primary">
+                <i class="fa-solid fa-gauge-high"></i> Open Admin Workspace
+              </a>
+              <button type="button" onclick="handleFooterAdminLogout()" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-bottom">
-        <div>&copy; 2026 Vantri (V3) Innovations. All rights reserved.</div>
+        <div>&copy; 2026 Vantri (V3) Innovations. All rights reserved. &bull; <a href="admin.html" style="color: #94a3b8; text-decoration: none;" title="Founder &amp; Administrator Space"><i class="fa-solid fa-lock"></i> Admin Portal</a></div>
         <div>Engineered for high-performance responsiveness across all screen ratios.</div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="js/qrcode.js"></script>
+  <script src="js/certificate.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
